@@ -44,13 +44,11 @@ public class Home extends Activity implements IResearchView {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         produtoList = new ArrayList<>();
-        //adapter = new ProdutosAdapter(this, produtoList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new Home.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //recyclerView.setAdapter(adapter);
 
 
         presenter = new ResearchPresenter(this, this);
