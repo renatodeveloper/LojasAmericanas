@@ -1,7 +1,12 @@
 package com.lojas.americanas.application.ui.activities;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -21,6 +26,8 @@ import com.lojas.americanas.application.service.IResearchView;
 import com.lojas.americanas.application.service.research.ResearchPresenter;
 import com.lojas.americanas.application.ui.adapter.ProdutosAdapter;
 import com.lojas.americanas.domain.model.Produto;
+import com.lojas.americanas.infrastructure.helper.ActivityUtil;
+import com.lojas.americanas.infrastructure.helper.DialogHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,12 +41,20 @@ public class Home extends Activity implements IResearchView {
     private RecyclerView recyclerView;
     private ProdutosAdapter adapter;
     private List<Produto> produtoList;
+    private ActivityUtil util;
+    private DialogHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        util = new ActivityUtil(Home.this);
+        helper = new DialogHelper(Home.this);
+
+        if(!util.isOnline()){
+            helper.noConection(Home.this);
+        }else{
         initCollapsingToolbar();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -58,6 +73,7 @@ public class Home extends Activity implements IResearchView {
             Glide.with(this).load(R.drawable.logo).into((ImageView) findViewById(R.id.image));
         } catch (Exception e) {
             e.printStackTrace();
+        }
         }
     }
 
@@ -166,4 +182,5 @@ public class Home extends Activity implements IResearchView {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
 }
