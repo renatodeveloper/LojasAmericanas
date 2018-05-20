@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lojas Americanas - full</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_info">Informações</string>
+    <string name="action_add_carrinho">Add ao Carrinho</string>
+    <string name="title">Lojas Americanas</string>
+    <string name="subtitle">Preço baixo e as melhores ofertas...</string>
+
+    <string name="research_error_parameter">Parâmetro inválido! </string>
+    <string name="research_error_busca">Não foi possível efetuar a busca! </string>
+</resources>
