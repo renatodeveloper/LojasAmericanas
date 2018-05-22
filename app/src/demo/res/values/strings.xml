@@ -8,4 +8,8 @@
 
     <string name="research_error_parameter">Parâmetro inválido! </string>
     <string name="research_error_busca">Não foi possível efetuar a busca! </string>
+
+    <string name="title_msg_conection">Atenção</string>
+    <string name="desc_msg_conection">Conecte-se à Internet!</string>
+    <string name="opt_msg_conection">OK</string>
 </resources>
