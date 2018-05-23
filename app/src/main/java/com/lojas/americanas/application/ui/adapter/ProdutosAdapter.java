@@ -13,12 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.lojas.americanas.R;
 import com.lojas.americanas.domain.model.Produto;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.MyViewHolder>  {
+    Gson gson = null;
+    String str = null;
     private Context mContext;
     private List<Produto> produtoList;
 
@@ -51,7 +56,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Produto produto = produtoList.get(position);
+        final Produto produto = produtoList.get(position);
         holder.title.setText(produto.getName());
         holder.count.setText(produto.getName() + " songs");
 
@@ -61,6 +66,10 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.MyView
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                str = "";
+                gson = new Gson();
+                gson.toJson(produto);
+                str = gson.toJson(produto).toString();
                 showPopupMenu(holder.overflow);
             }
         });
@@ -90,6 +99,9 @@ public class ProdutosAdapter extends RecyclerView.Adapter<ProdutosAdapter.MyView
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_info:
+                    if(str!=null){
+                      //send to layout detalhes (str)
+                    }
                     Toast.makeText(mContext, "Mais Informações", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.action_add_carrinho:
