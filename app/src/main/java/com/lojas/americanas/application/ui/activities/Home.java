@@ -64,7 +64,12 @@ public class Home extends Activity implements IResearchView {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new Home.GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
         presenter = new ResearchPresenter(this, this);
         presenter.buscar();
